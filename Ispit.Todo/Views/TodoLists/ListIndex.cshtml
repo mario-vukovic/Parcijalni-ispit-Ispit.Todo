@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Ispit.Todo.Models.Dbo.TodoList>
+
+@{
+    ViewData["Title"] = "ListIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateList">Create new list</a>
+    <a asp-action="CreateTask">Create New Task</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ListName)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListName)
+            </td>
+            
+            <td>
+                <a asp-action="TaskIndex" asp-route-id="@item.Id">View tasks</a> |
+                <a asp-action="EditList" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="ListDetails" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="DeleteList" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
